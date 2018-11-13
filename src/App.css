@@ -7,6 +7,46 @@
   height: 40vmin;
 }
 
+.header {
+  background-color: #3e90c0;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  color: white;
+}
+
+.logo-name  {
+ margin-left: 50px;
+}
+
+.search-bar {
+  background-color: #94d0f3;
+  height: 40px;
+  color: white;
+}
+
+.content-box{
+/* width: 100%; */
+/* box-sizing: content-box; */
+display: flex;
+margin: 0 20px 0 20px; 
+background-color: rgb(201, 228, 247);
+}
+
+.products-list  {
+flex:50%;
+height: 500px;
+}
+
+.products-details {
+  flex:50%;
+  margin-top:30px;
+}
+.foot-pages{
+  align-items: flex-end;
+  width: 100%;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
