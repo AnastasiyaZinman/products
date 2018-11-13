@@ -70,3 +70,7 @@ height: 500px;
     transform: rotate(360deg);
   }
 }
+
+.item{
+  width:400px;
+}
