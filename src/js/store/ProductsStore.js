@@ -18,10 +18,16 @@ class ProductsStore {
           })
     }
 
-    @action sortProducts =() => {
+    @action sortProducts = () => {
         this.products.sort((a, b) => (new Date(b.creationDate) - new Date(a.creationDate)));
     }
-       
+
+    @action renderDetails = (id) => {
+        console.log("id"+ id);
+    }
+    @action deleteRecord= (id) => {
+        console.log("delete"+ id);
+    }
 }
 const store = new ProductsStore();
 export default store;

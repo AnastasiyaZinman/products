@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import ProductDetails from './components/ProductDetails';
-import Navigation from './components/Navigation';
+// import Navigation from './components/Navigation';
 import SearchPanel from './components/SearchSortPanel';
 import ProductsList from './components/ProductsList';
 // import ProductDetails from './components/ProductDetails';

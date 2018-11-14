@@ -22,7 +22,8 @@
 .product-descr  {
     position: relative;
     margin: 5px 5px;
-    grid-area: t
+    grid-area: t;
+    overflow: hidden;
 }
 .btn-delete {
     position: absolute;

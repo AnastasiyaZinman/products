@@ -6,7 +6,9 @@ import './css/products.css'
 class ProductsList extends Component {
     constructor() {
         super();
-        this.state = {}
+        this.state = {
+            color: "white"
+        }
     }
 
     componentDidMount() {       
@@ -20,14 +22,16 @@ class ProductsList extends Component {
         console.log(records);
        return records.map(p => {
             console.log("p", p)
-            return (
-                //  onClick={() => this.editProduct(p.id)}
-                <div className="product-item" key={p.id}>
+            return (   
+                // this.editProduct(p.id)           this.setState({color : 'lightblue'})
+                <div className="product-item" key={p.id} 
+                     style={{ backgroundColor: this.state.color }}
+                     onClick={() => this.props.store.renderDetails(p.id)}>
                 <div className="img-thumbnail"><img className="img-100" src={p.thumbnailUrl} alt={p.thumbnailUrl}/></div>
                     <div className="product-descr">
                         <div>{p.name}</div>
                         <div>{p.description}</div>    
-                        <button className="btn-delete" type='button' onClick={() => this.deleteRecord(p.id)}>DELETE</button>
+                        <button className="btn-delete" type='button' onClick={() => this.props.store.deleteRecord(p.id)}>DELETE</button>
                     </div>
                 </div>
             )
