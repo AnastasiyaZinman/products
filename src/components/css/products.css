@@ -25,10 +25,7 @@
     grid-area: t;
     overflow: hidden;
 }
-.btn-delete {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+.btn {
     background-color: #f4511e;
     border: none;
     color: white;
@@ -41,6 +38,16 @@
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
+    z-index: 3;
   }
-  
-  .btn-delete:hover {opacity: 1}
+  .btn-delete{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  .btn-update{
+    position: absolute;
+    top: 20px;
+    right: 0;
+  }
+  .btn:hover {opacity: 1}

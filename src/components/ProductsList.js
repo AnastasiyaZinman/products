@@ -7,13 +7,25 @@ class ProductsList extends Component {
     constructor() {
         super();
         this.state = {
-            color: "white"
+           
         }
     }
 
     componentDidMount() {       
         console.log("sort");
-        this.props.store.sortProducts();
+        // this.props.store.sortProducts();
+      }
+
+      edit = (id) => {
+        this.props.store.productIdForEdit = id;
+        let details = this.props.store.getDetails(id);
+        console.log(details.id, ' ',details.name)
+      }
+
+      delete = (id) => {
+          console.log("delete")
+        this.props.store.productIdForDelete = id;
+        this.props.store.deleteProduct(id);
       }
 
     renderProductList = () => {
@@ -21,17 +33,20 @@ class ProductsList extends Component {
         let records= this.props.store.products;
         console.log(records);
        return records.map(p => {
-            console.log("p", p)
+            // console.log("p", p)
             return (   
                 // this.editProduct(p.id)           this.setState({color : 'lightblue'})
-                <div className="product-item" key={p.id} 
-                     style={{ backgroundColor: this.state.color }}
-                     onClick={() => this.props.store.renderDetails(p.id)}>
+                <div className="product-item" key={p.id} id={p.id}
+                    //  style={{ backgroundColor: this.state.color }}
+                    // onClick={() => this.edit(p.id)}
+                    >
                 <div className="img-thumbnail"><img className="img-100" src={p.thumbnailUrl} alt={p.thumbnailUrl}/></div>
                     <div className="product-descr">
                         <div>{p.name}</div>
                         <div>{p.description}</div>    
-                        <button className="btn-delete" type='button' onClick={() => this.props.store.deleteRecord(p.id)}>DELETE</button>
+                        
+                        <button className="btn btn-update" type='button' onClick={() => this.edit(p.id)}>UPDATE</button>
+                        <button className="btn btn-delete" type='button' onClick={() => this.delete(p.id)}>DELETE</button>
                     </div>
                 </div>
             )
