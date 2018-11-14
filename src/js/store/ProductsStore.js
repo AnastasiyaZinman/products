@@ -24,21 +24,22 @@ class ProductsStore {
         this.products.sort((a, b) => (new Date(b.creationDate) - new Date(a.creationDate)));
     }
 
-    getDetails = (id) => {
+    @action getDetails = (id) => {
         console.log("productIdForEdit"+ id);
         let item = this.findCurrentItem(id)
         console.log("item " + item.name);
         return(item)
     }
-     deleteProduct = (id) => {
+    @action deleteProduct = (id) => {
         console.log("delete"+ id);
         let newProducts = [...this.products]; 
         newProducts = this.products.filter(p => p.id !== id);
         this.products = newProducts;
-        console.log("after deleted",this.products);
+        console.log("after delete",this.products);
+        
     }
 
-    findCurrentItem = (id) => {
+    @action findCurrentItem = (id) => {
         return this.products.filter(p => p.id === id)[0];
     }
 }

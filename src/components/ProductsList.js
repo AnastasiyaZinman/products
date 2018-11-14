@@ -25,9 +25,10 @@ class ProductsList extends Component {
       }
 
       delete = (id) => {
-          console.log("delete")
+        console.log("delete")
         this.props.store.productIdForDelete = id;
       }
+
       closeDeleteForm = () => {
           this.props.store.productIdForDelete = -1;
       }
@@ -35,11 +36,10 @@ class ProductsList extends Component {
     renderProductList = () => {
         // debugger;
         let records= this.props.store.products;
-        console.log(records);
+        // console.log(records);
        return records.map(p => {
             // console.log("p", p)
             return (   
-                // this.editProduct(p.id)           this.setState({color : 'lightblue'})
                 <div className="product-item" key={p.id} id={p.id}
                     //  style={{ backgroundColor: this.state.color }}
                     // onClick={() => this.edit(p.id)}
