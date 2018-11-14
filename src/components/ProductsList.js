@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
+import './css/products.css'
 @inject("store")
 @observer
 class ProductsList extends Component {
@@ -21,14 +22,13 @@ class ProductsList extends Component {
             console.log("p", p)
             return (
                 //  onClick={() => this.editProduct(p.id)}
-                <div className="item" key={p.id}>
-                <div><img src={p.thumbnailUrl} alt={p.thumbnailUrl}/></div>
-                <div>{p.name}</div>
-                <div>{p.description}</div>
-                <div>
-                  <button type='button' onClick={() => this.deleteRecord(p.id)} />
-                 
-                </div>
+                <div className="product-item" key={p.id}>
+                <div className="img-thumbnail"><img className="img-100" src={p.thumbnailUrl} alt={p.thumbnailUrl}/></div>
+                    <div className="product-descr">
+                        <div>{p.name}</div>
+                        <div>{p.description}</div>    
+                        <button className="btn-delete" type='button' onClick={() => this.deleteRecord(p.id)}>DELETE</button>
+                    </div>
                 </div>
             )
         } )

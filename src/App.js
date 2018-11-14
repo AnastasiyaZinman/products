@@ -26,11 +26,11 @@ class App extends Component {
         </div>
         <div className="content-box">
           <div className="products-list">
-          {/* <SearchPanel /> */}
+          <SearchPanel />
           {(!this.props.store.isLoading)?<ProductsList />:<div>no data</div>}
           {/* <Navigation /> */}
           </div>
-            {/* <ProductDetails /> */}
+            <ProductDetails />
         </div>
       </div>
     );
