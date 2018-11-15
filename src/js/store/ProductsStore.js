@@ -6,22 +6,30 @@ class ProductsStore {
     @observable isLoading = true;
     @observable productIdForEdit = -1;
     @observable productIdForDelete = -1;
+    @observable sort = 'name';
     @action getData = () => {
         console.log("here");
 		axios.get('https://msbit-exam-products-store.firebaseio.com/products.json')
 			.then(result => {
-				console.log(result);
-				this.products = result.data;
-				console.log("store products", this.products);
+               
+                this.products = result.data; 
+                console.log("this products",this.products);
+                this.sortProducts()
 				this.isLoading = false;
             })
             .catch(function (error) {
             console.log(error);
           })
     }
-
+    
     @action sortProducts = () => {
-        this.products.sort((a, b) => (new Date(b.creationDate) - new Date(a.creationDate)));
+        debugger;
+        let sortParameter = this.sort;
+        console.log("sort Parameter",sortParameter);
+        let sortedArray=[...this.products]
+        sortedArray.sort ((a, b) => (b[sortParameter] - a[sortParameter]));
+        this.products=sortedArray;
+        console.log("sort",this.products);
     }
 
     @action getDetails = (id) => {

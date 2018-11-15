@@ -12,12 +12,13 @@ class ProductDetails extends Component {
             price: 0
         }
     }
+    
     changeInput = (event) => this.setState({
         [event.target.name]: event.target.value
       })
 
     renderDetails = () => { 
-       
+
         if (this.props.store.productIdForEdit !== -1) 
            {
             let productDetails = this.props.store.findCurrentItem(this.props.store.productIdForEdit);
@@ -37,11 +38,14 @@ class ProductDetails extends Component {
 
 }
     updateState = (productDetails) =>{
-       
+       let name = productDetails.name,
+       description=productDetails.description,
+       price = productDetails.price;
+       console.log("proDUCTT",productDetails)
         this.setState({
-            'name': productDetails.name,
-            'description': productDetails.description,
-            'price': productDetails.price
+            name: name,
+            description: description,
+            price: price
         });
     }
     render() {
