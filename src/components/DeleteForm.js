@@ -8,12 +8,6 @@ import { observer, inject } from 'mobx-react';
 @observer
 class DeleteForm extends Component {
   deleteRecord = () => {
-    if (this.props.id === this.props.store.productIdForEdit) 
-    {
-        console.log("равны!", this.props.id," store ",this.props.store.productIdForEdit)
-    this.props.store.productIdForUpdate = -1;
-    console.log(this.props.store.productIdForUpdate)
-    }
     this.props.store.deleteProduct(this.props.id);
     this.props.closeDeleteForm();   
   }

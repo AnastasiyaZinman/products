@@ -1,52 +1,54 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
+import { observable } from 'mobx';
 import './css/product-details.css';
 @inject("store")
 @observer
 class ProductDetails extends Component {
-    constructor() {
-        super();
-        this.state = {
+     
+        @observable form = {
             name: '',
             description: '',
-            price: 0
-        }
-    }
+            price: 0,
+            url: ''
+        };
     
-    changeInput = (event) => this.setState({
-        [event.target.name]: event.target.value
-      })
+    changeInput = (event) => 
+    {
+        this.form [event.target.name]= event.target.value;
+    }
 
     renderDetails = () => { 
-
         if (this.props.store.productIdForEdit !== -1) 
            {
             let productDetails = this.props.store.findCurrentItem(this.props.store.productIdForEdit);
-            // this.updateState(productDetails)
+            
+            debugger;
+            if (this.form.name!== productDetails.name) 
+            this.updateState(productDetails.name,productDetails.description, productDetails.price, productDetails.url);
+            
             console.log("current item", productDetails);
            return( <div className="item">
              <img className="main-img" src={productDetails.url} alt="crm"/>
              Name: <br/>
-             <input name='name' type='text' value={this.state.name} onChange={this.changeInput}></input>
+             <input name='name' type='text' value={this.form.name} onChange={this.changeInput}></input>
              Description: <br />
-             <input name='description' type='text' value={this.state.description} onChange={this.changeInput}></input>
+             <input name='description' type='text' value={this.form.description} onChange={this.changeInput}></input>
              Price: <br />
-             <input name='price' type='text' value={this.state.price} onChange={this.changeInput}></input>
+             <input name='price' type='text' value={this.form.price} onChange={this.changeInput}></input>
             </div>)
          }
          else return <div>"Click on products for getting more information"</div>
 
 }
-    updateState = (productDetails) =>{
-       let name = productDetails.name,
-       description=productDetails.description,
-       price = productDetails.price;
-       console.log("proDUCTT",productDetails)
-        this.setState({
+    updateState = (name, descr, price, url) =>{
+
+       this.form = {
             name: name,
-            description: description,
-            price: price
-        });
+            description: descr,
+            price: price,
+            url: url
+        };
     }
     render() {
         return (

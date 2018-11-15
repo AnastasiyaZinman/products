@@ -1,6 +1,7 @@
 // import React, { Component } from 'react';
 import { observable, action, computed, reaction } from "mobx";
 import axios from 'axios';
+import { runInThisContext } from "vm";
 class ProductsStore {
     @observable products = [];
     @observable isLoading = true;
@@ -25,13 +26,14 @@ class ProductsStore {
             })
     }
 
-    @action sortProducts = (arrayForSort) => {
-        debugger;
+    @action sortProducts = () => {
+        // debugger;
         let sortParameter = this.sort;
         console.log("sort Parameter", sortParameter);
         let sortedArray = [...this.filteredAr]
-        sortedArray.sort((a, b) => (b[sortParameter] - a[sortParameter]));
-        this.filteredAr = sortedArray;
+        this.filteredAr = sortedArray.sort((a, b) => {
+            return (b[sortParameter] > a[sortParameter]) ? 1 : -1;
+        });
         console.log("sort", this.filteredAr);
     }
 
@@ -53,12 +55,16 @@ class ProductsStore {
 
 
     @action deleteProduct = (id) => {
+        // debugger;
         console.log("delete" + id);
+        if (this.productIdForEdit === id){
+            this.productIdForEdit = -1;
+        }
         let newProducts = [...this.products];
         newProducts = this.products.filter(p => p.id !== id);
         this.products = newProducts;
         this.filteredAr=this.filterProducts();
-        this.sortProducts(this.filteredAr);
+        this.sortProducts();
         console.log("after delete", this.products);
 
     }
