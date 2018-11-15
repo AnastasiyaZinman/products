@@ -27,14 +27,12 @@ class ProductsStore {
     }
 
     @action sortProducts = () => {
-        // debugger;
         let sortParameter = this.sort;
         console.log("sort Parameter", sortParameter);
         let sortedArray = [...this.filteredAr]
         this.filteredAr = sortedArray.sort((a, b) => {
             return (b[sortParameter] > a[sortParameter]) ? 1 : -1;
         });
-        console.log("sort", this.filteredAr);
     }
 
     @action getDetails = (id) => {
@@ -52,7 +50,9 @@ class ProductsStore {
             (p["description"].toLowerCase().includes(this.searchText.toLowerCase())))
         )
     }
-
+    @action saveDetails = () => {
+        console.log(this.productIdForEdit)
+    }
 
     @action deleteProduct = (id) => {
         // debugger;

@@ -8,7 +8,7 @@ class ProductsList extends Component {
     constructor() {
         super();
         this.state = {
-            popUpDelete: false
+          
         }
     }
 

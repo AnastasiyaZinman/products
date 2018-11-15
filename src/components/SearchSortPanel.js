@@ -18,7 +18,7 @@ class SearchPanel extends Component {
         if ([e.target.name][0] === "sort") {
             this.props.store.sortProducts(this.props.store.filteredAr)
         }
-        else this.props.store.filteredAr= this.props.store.filterProducts()
+        else this.props.store.filteredAr = this.props.store.filterProducts()
     }
 
     renderOptions = () => {
