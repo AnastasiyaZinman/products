@@ -12,11 +12,11 @@ import { observer, inject } from 'mobx-react';
 class App extends Component {
   constructor() {
     super();
-   
-} 
-  componentDidMount(){
-   this.props.store.getData()
-}
+
+  }
+  componentDidMount() {
+    this.props.store.getData()
+  }
 
   render() {
     return (
@@ -26,11 +26,11 @@ class App extends Component {
         </div>
         <div className="content-box">
           <div className="products-list">
-          <SearchPanel />
-          {(!this.props.store.isLoading)?<ProductsList />:<div>no data</div>}
-          {/* <Navigation /> */}
+            <SearchPanel />
+            {(!this.props.store.isLoading) ? <ProductsList /> : <div>no data</div>}
+            {/* <Navigation /> */}
           </div>
-            <ProductDetails />
+          <ProductDetails />
         </div>
       </div>
     );

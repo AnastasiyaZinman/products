@@ -34,11 +34,11 @@ class ProductsList extends Component {
       }
 
     renderProductList = () => {
-        // debugger;
-        let records= this.props.store.products;
-        // console.log(records);
+        // let records = this.props.store.products;
+        let records = this.props.store.filteredAr;
+        this.props.store.sortProducts(records);
+    //    console.log("records1",records1)
        return records.map(p => {
-            // console.log("p", p)
             return (   
                 <div className="product-item" key={p.id} id={p.id}
                     //  style={{ backgroundColor: this.state.color }}
