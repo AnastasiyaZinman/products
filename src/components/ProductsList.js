@@ -10,18 +10,11 @@ class ProductsList extends Component {
         this.state = {
           
         }
-    }
-
-    componentDidMount() {       
-        console.log("sort");
-        // this.props.store.sortProducts();
-      }
-        
+    }        
       edit = (id) => {
         this.props.store.productIdForEdit = id;
-        // let details = this.props.store.getDetails(id);
-       
-        // console.log(details.id, ' ',details.name)
+        let productDetails = this.props.store.findCurrentItem(this.props.store.productIdForEdit);
+        this.props.store.updateFormDetails(productDetails);
       }
 
       delete = (id) => {
@@ -34,10 +27,7 @@ class ProductsList extends Component {
       }
 
     renderProductList = () => {
-        // let records = this.props.store.products;
         let records = this.props.store.filteredAr;
-        // this.props.store.sortProducts(records);
-    //    console.log("records1",records1)
        return records.map(p => {
             return (   
                 <div className="product-item" key={p.id} id={p.id}

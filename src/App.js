@@ -30,7 +30,7 @@ class App extends Component {
             {(!this.props.store.isLoading) ? <ProductsList /> : <div>no data</div>}
             {/* <Navigation /> */}
           </div>
-          <ProductDetails />
+          <ProductDetails productId={this.props.store.productIdForEdit} filteredAr={this.props.store.filteredAr} />
         </div>
       </div>
     );

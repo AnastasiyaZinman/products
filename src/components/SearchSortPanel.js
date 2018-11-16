@@ -14,7 +14,7 @@ class SearchPanel extends Component {
     inputChange = (e) => {
         // debugger;
         this.props.store[e.target.name] = e.target.value;
-        console.log("e target name", [e.target.name][0]);
+        // console.log("e target name", [e.target.name][0]);
         if ([e.target.name][0] === "sort") {
             this.props.store.sortProducts(this.props.store.filteredAr)
         }

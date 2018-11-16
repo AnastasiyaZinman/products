@@ -8,8 +8,14 @@ class ProductsStore {
     @observable productIdForEdit = -1;
     @observable productIdForDelete = -1;
     @observable sort = 'name';
-    @observable filteredAr =[];
+    @observable filteredAr = [];
     @observable searchText = '';
+    @observable form = {
+        name: '',
+        description: '',
+        price: 0,
+        url: ''
+    }
     @action getData = () => {
         console.log("here");
         axios.get('https://msbit-exam-products-store.firebaseio.com/products.json')
@@ -17,7 +23,7 @@ class ProductsStore {
 
                 this.products = result.data;
                 console.log("this products", this.products);
-                this.filteredAr=[...this.products]
+                this.filteredAr = [...this.products]
                 this.sortProducts(this.filteredAr)
                 this.isLoading = false;
             })
@@ -43,11 +49,11 @@ class ProductsStore {
     }
     @action filterProducts = () => {
         // debugger;
-        console.log("searchText",this.searchText)
-        return this.products.filter (p =>
-           ( (p["name"].toLowerCase().includes(this.searchText.toLowerCase()))
-            ||
-            (p["description"].toLowerCase().includes(this.searchText.toLowerCase())))
+        console.log("searchText", this.searchText)
+        return this.products.filter(p =>
+            ((p["name"].toLowerCase().includes(this.searchText.toLowerCase()))
+                ||
+                (p["description"].toLowerCase().includes(this.searchText.toLowerCase())))
         )
     }
     @action saveDetails = () => {
@@ -57,13 +63,13 @@ class ProductsStore {
     @action deleteProduct = (id) => {
         // debugger;
         console.log("delete" + id);
-        if (this.productIdForEdit === id){
+        if (this.productIdForEdit === id) {
             this.productIdForEdit = -1;
         }
         let newProducts = [...this.products];
         newProducts = this.products.filter(p => p.id !== id);
         this.products = newProducts;
-        this.filteredAr=this.filterProducts();
+        this.filteredAr = this.filterProducts();
         this.sortProducts();
         console.log("after delete", this.products);
 
@@ -72,7 +78,12 @@ class ProductsStore {
     @action findCurrentItem = (id) => {
         return this.filteredAr.filter(p => p.id === id)[0];
     }
+    @action updateFormDetails = (arr) => {
+        this.form.name = arr.name;
+        this.form.description = arr.description;
+        this.form.price = arr.price;
+        this.form.url = arr.url;
+    }
 }
-
-const store = new ProductsStore();
-export default store;
+    const store = new ProductsStore();
+    export default store;
