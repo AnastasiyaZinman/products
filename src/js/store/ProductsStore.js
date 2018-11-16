@@ -37,7 +37,7 @@ class ProductsStore {
         console.log("sort Parameter", sortParameter);
         let sortedArray = [...this.filteredAr]
         this.filteredAr = sortedArray.sort((a, b) => {
-            return (b[sortParameter] > a[sortParameter]) ? 1 : -1;
+            return (b[sortParameter] < a[sortParameter]) ? 1 : -1;
         });
     }
 
