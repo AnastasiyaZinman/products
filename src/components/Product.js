@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
-
+import { observer, inject } from 'mobx-react';
+@inject("store")
+@observer
 class ProductsList extends Component {
+   edit = (id) => {
+        this.props.store.productIdForEdit = id;
+        let productDetails = this.props.store.findCurrentItem(this.props.store.productIdForEdit);
+        this.props.store.updateFormDetails(productDetails);
+      }
+
     delete = (id) => {
-        this.props.delete(id)
+        console.log("delete")
+        this.props.store.productIdForDelete = id;
     }
-    edit = (id) => {
-        this.props.edit(id)
-    }
+    
     render() {
         let p = this.props.p;
         return (

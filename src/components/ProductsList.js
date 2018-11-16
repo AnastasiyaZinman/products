@@ -1,42 +1,22 @@
 import React, { Component } from 'react';
 import './css/products.css';
 import DeleteForm from './DeleteForm';
-import { observer, inject } from 'mobx-react';
 import Product from './Product';
+import { observer, inject } from 'mobx-react';
 @inject("store")
 @observer
-class ProductsList extends Component {
-    constructor() {
-        super();
-        this.state = {
-          
-        }
-    }        
-      edit = (id) => {
-        this.props.store.productIdForEdit = id;
-        let productDetails = this.props.store.findCurrentItem(this.props.store.productIdForEdit);
-        this.props.store.updateFormDetails(productDetails);
-      }
-
-      delete = (id) => {
-        console.log("delete")
-        this.props.store.productIdForDelete = id;
-      }
-
+class ProductsList extends Component {  
       closeDeleteForm = () => {
           this.props.store.productIdForDelete = -1;
-      }
+    }
 
     renderProductList = () => {
         let records = this.props.store.filteredAr;
-       return records.map(p => {
-            return (   
-               <Product p={p} delete={this.delete} edit={this.edit}/>
-            )
-        } )
+       return records.map (p => 
+        {
+            return (<Product p={p}/>)
+        })
     }
-
-    
 
     render() {
         return (
