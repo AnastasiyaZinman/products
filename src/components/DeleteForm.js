@@ -4,12 +4,17 @@ import './css/deleteForm.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { observer, inject } from 'mobx-react';
+
 @inject("store")
 @observer
 class DeleteForm extends Component {
+  
   deleteRecord = () => {
-    this.props.store.deleteProduct(this.props.id);
-    this.props.closeDeleteForm();   
+    this.props.store.deleteProduct(this.props.store.productIdForDelete);
+    this.closeDeleteForm();   
+  }
+  closeDeleteForm = () => {
+    this.props.store.productIdForDelete = -1;
   }
 
   render() {
@@ -21,7 +26,7 @@ class DeleteForm extends Component {
         <div>Are you sure you want to delete this record? </div>
         <div className="div-button">
           <button onClick={this.deleteRecord}>YES</button>
-          <button onClick={this.props.closeDeleteForm}>NO</button>
+          <button onClick={this.closeDeleteForm}>NO</button>
         </div>
       </div>
     )

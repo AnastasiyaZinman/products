@@ -10,6 +10,7 @@ class ProductsStore {
     @observable sort = 'name';
     @observable filteredAr = [];
     @observable searchText = '';
+    @observable indexOfUpdatedProduct = -1;
     @observable form = {
         name: '',
         description: '',
@@ -57,12 +58,16 @@ class ProductsStore {
         )
     }
     @action saveDetails = () => {
-        console.log(this.productIdForEdit)
+        let index = this.findIndexItem(this.productIdForEdit)
+        if (index!==-1){
+        this.products[index].name = this.form.name;
+        this.products[index].description = this.form.description;
+        this.products[index].price = this.form.price;
+        }
+        return index
     }
 
     @action deleteProduct = (id) => {
-        // debugger;
-        console.log("delete" + id);
         if (this.productIdForEdit === id) {
             this.productIdForEdit = -1;
         }
@@ -78,6 +83,12 @@ class ProductsStore {
     @action findCurrentItem = (id) => {
         return this.filteredAr.filter(p => p.id === id)[0];
     }
+
+    findIndexItem = (id) => {
+        return this.products.findIndex(item => { return item.id === id }
+        )
+    }
+
     @action updateFormDetails = (arr) => {
         this.form.name = arr.name;
         this.form.description = arr.description;
@@ -85,5 +96,5 @@ class ProductsStore {
         this.form.url = arr.url;
     }
 }
-    const store = new ProductsStore();
-    export default store;
+const store = new ProductsStore();
+export default store;
