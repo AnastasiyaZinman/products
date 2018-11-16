@@ -6,7 +6,7 @@ import { observer, inject } from 'mobx-react';
 @inject("store")
 @observer
 class SavePopUp extends Component {
-
+    
     closeSaveForm = () => {
         this.props.store.indexOfUpdatedProduct = -1;
     }

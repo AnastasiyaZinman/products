@@ -1,22 +1,35 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
+import ReactTimeout from 'react-timeout'
 import SavePopUp from './SavePopUp';
-// import { observable} from "mobx";
+import { observable} from "mobx";
 import './css/product-details.css';
 @inject("store")
 @observer
 class ProductDetails extends Component {
 
+@observable showMessage = false;
+
 changeInput = (e) => {
     this.props.store.form[e.target.name] = e.target.value;
 }
-//  toggle = () => {
-//     this.showMessage = !this.showMessage;
-// }
+ toggle = () => {
+    this.showMessage = !this.showMessage;
+}
+showErrorMessage = () => {
+    this.props.setTimeout(this.toggle, 3000) // call the `toggle` function after 5000ms
+  }
 
 save = () => {
+    let form = this.props.store.form;
+    if (form.name && form.description && this.props.store.form.price )
+    {
     this.props.store.indexOfUpdatedProduct = this.props.store.saveDetails();
-    // this.toggle()
+    }
+    else {
+        this.toggle()
+        this.showErrorMessage()
+    }
 }
 renderDetails = () => {
     if (this.props.store.productIdForEdit !== -1) {
@@ -34,6 +47,9 @@ renderDetails = () => {
                 <input name='price' type='text' value={this.props.store.form.price} onChange={this.changeInput}></input>
             </div>
             <div>
+                {(this.showMessage)?
+                <span>Please enter all inputs </span>:
+                null }
                 <button className="btn btn-save" type='button' onClick={this.save}>SAVE</button>
             </div>
         </div>)
@@ -52,4 +68,4 @@ render() {
     )
 }
 }
-export default ProductDetails;
+export default ReactTimeout(ProductDetails);
