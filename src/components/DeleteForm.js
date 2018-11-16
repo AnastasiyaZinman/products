@@ -8,7 +8,7 @@ import { observer, inject } from 'mobx-react';
 @inject("store")
 @observer
 class DeleteForm extends Component {
-  
+
   deleteRecord = () => {
     this.props.store.deleteProduct(this.props.store.productIdForDelete);
     this.closeDeleteForm();   
@@ -21,7 +21,7 @@ class DeleteForm extends Component {
     return (
       <div className="delete-form">
         <div className="close-button">
-        <FontAwesomeIcon style={{ color: "#AAAAAA" }} className="fas" icon={faTimes} onClick={this.props.closeDeleteForm} />
+        <FontAwesomeIcon style={{ color: "#AAAAAA" }} className="fas" icon={faTimes} onClick={this.closeDeleteForm} />
         </div> 
         <div>Are you sure you want to delete this record? </div>
         <div className="div-button">

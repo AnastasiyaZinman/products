@@ -26,12 +26,13 @@
     overflow: hidden;
 }
 .btn {
-    background-color: #f4511e;
     border: none;
     color: white;
     padding: 10px 26px;
     text-align: center;
     font-size: 10px;
+    border-radius: 4px;
+    box-shadow: 3px 5px 2px #888888;
     margin: 2px 2px;
     opacity: 0.6;
     transition: 0.3s;
@@ -39,14 +40,12 @@
     text-decoration: none;
     cursor: pointer;
   }
+
   .btn-delete{
+    background-color: #f4511e;
     position: absolute;
     bottom: 0;
     right: 0;
   }
-  .btn-update{
-    position: absolute;
-    top: 20px;
-    right: 0;
-  }
+  
   .btn:hover {opacity: 1}

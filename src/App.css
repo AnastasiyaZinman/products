@@ -35,7 +35,7 @@ background-color: rgb(201, 228, 247);
 
 .products-list  {
 box-sizing: content-box;
-flex: 50%;
+flex: 60%;
 height: 550px;
 overflow: scroll;
 /* padding: 10px 5px; */
@@ -43,7 +43,7 @@ overflow: scroll;
 
 
 .products-details {
-  flex:50%;
+  flex:40%;
   margin-top:30px;
 }
 .foot-pages{

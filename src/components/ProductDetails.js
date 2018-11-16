@@ -34,19 +34,19 @@ save = () => {
 renderDetails = () => {
     if (this.props.store.productIdForEdit !== -1) {
         // console.log("current item", productDetails);
-        return (<div className="item">
+        return (<div className="item details">
             <img className="main-img" src={this.props.store.form.url} alt="crm" />
             <div>Name: <br />
-                <input name='name' type='text'
+                <input id="updName" name='name' type='text'
                     value={this.props.store.form.name} onChange={this.changeInput}></input>
             </div>
             <div>Description: <br />
-                <input name='description' type='text' value={this.props.store.form.description} onChange={this.changeInput}></input>
+                <textarea rows="4" cols="50" id="updDescr" name='description'  value={this.props.store.form.description} onChange={this.changeInput}></textarea>
             </div>
             <div>Price: <br />
-                <input name='price' type='text' value={this.props.store.form.price} onChange={this.changeInput}></input>
+                <input id="updPrice" name='price' type='text' value={this.props.store.form.price} onChange={this.changeInput}></input>
             </div>
-            <div>
+            <div className="save-bottom">
                 {(this.showMessage)?
                 <span>Please enter all inputs </span>:
                 null }
