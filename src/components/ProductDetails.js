@@ -23,10 +23,10 @@ class ProductDetails extends Component {
     save = () => {
         let form = this.props.store.form;
         if (form.name && form.description && this.props.store.form.price > 0) {
-           return this.props.store.indexOfUpdatedProduct = this.props.store.saveDetails();
-        
+            return this.props.store.indexOfUpdatedProduct = this.props.store.saveDetails();
+
         }
-        else if (this.props.store.form.price <= 0 && this.props.store.form.price!=='') {
+        else if (this.props.store.form.price <= 0 && this.props.store.form.price !== '') {
             this.noticeText = 'Price should be more than 0';
         }
         else {
@@ -37,29 +37,31 @@ class ProductDetails extends Component {
     }
     renderDetails = () => {
         if (this.props.store.productIdForEdit !== -1) {
-            // console.log("current item", productDetails);
             return (
-                <div className="item details">
-                <img className="main-img" src={this.props.store.form.url} alt="crm" />
-                <div>Name: <br />
-                    <input id="updName" name='name' type='text'
-                        value={this.props.store.form.name} onChange={this.changeInput}></input>
-                </div>
-                <div>Description: <br />
-                    <textarea  id="updDescr" name='description' value={this.props.store.form.description} onChange={this.changeInput}></textarea>
-                </div>
-                <div>Price: <br />
-                    <input id="updPrice" name='price' type='text' value={this.props.store.form.price} onChange={this.changeInput}></input> $
-                </div>
-                <div className="save-bottom">
-                    {(this.showMessage) ?
-                        <span className='error-notice'>{this.noticeText} </span> :
-                        <span className='error-notice'></span>}
-                    <button className="btn btn-save" type='button' onClick={this.save}>SAVE</button>
-                </div>
-            </div>)
+                <fieldset className="item details">
+                    <legend className="details-text">{this.props.store.form.name} Details:</legend>
+                    <img className="main-img" src={this.props.store.form.url} alt="crm" />
+                    <div className="details-text">Name: <br />
+                        <input id="updName" name='name' type='text'
+                            value={this.props.store.form.name} onChange={this.changeInput}></input>
+                    </div>
+                    <div className="details-text">Description: <br />
+                        <textarea id="updDescr" name='description' value={this.props.store.form.description} onChange={this.changeInput}></textarea>
+                    </div>
+                    <div className="details-text">Price: <br />
+                        <input id="updPrice" name='price' type='text' value={this.props.store.form.price} onChange={this.changeInput}></input> $
+                    </div>
+                    <div className="save-bottom">
+                        {(this.showMessage) ?
+                            <span className='error-notice'>{this.noticeText} </span> :
+                            <span className='error-notice'></span>}
+                        <button className="btn btn-save" type='button' onClick={this.save}>SAVE</button>
+                    </div>
+                </fieldset>)
         }
-        else return <div>"Click on products for getting more information"</div>
+        else return <fieldset className="item details text-center">
+            <div>Click on products for getting more information...</div>
+        </fieldset>
     }
 
     render() {

@@ -10,7 +10,6 @@ class ProductsList extends Component {
       }
 
     delete = (id) => {
-        console.log("delete")
         this.props.store.productIdForDelete = id;
     }
     
@@ -19,15 +18,14 @@ class ProductsList extends Component {
         return (
             <div  key={p.id} id={p.id}
                 className={this.props.store.productIdForEdit===p.id? "product-item clicked": "product-item" }
-                onClick={() => this.edit(p.id)}
-            >
+                onClick={() => this.edit(p.id)}>
                 <div className="img-thumbnail">
                     <img className="img-100" src={p.thumbnailUrl} alt={p.thumbnailUrl} />
                 </div>
                 <div className="product-descr">
-                    <div>{p.name}</div>
-                    <div>{p.description}</div>
-                    {/* <button className="btn btn-update" type='button' >UPDATE</button> */}
+                    <div className='text-bold'>{p.name}</div>
+                    <br />
+                    <div className='text-italic'>{p.description}</div>
                     <button className="btn btn-delete" type='button' onClick={() => this.delete(p.id)}>DELETE</button>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 .search-bar {
-    width: 100%;
-    color:black;
+   width: 100%;
+   color:black;
    vertical-align: middle;
    display: flex;
    align-items: center;
@@ -28,6 +28,6 @@ select  {
 }
 .search-input i{
     position: absolute;
-   margin: 2px 5px;
+    margin: 2px 5px;
     z-index: 1;
 }

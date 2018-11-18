@@ -12,38 +12,33 @@ class SearchPanel extends Component {
         this.state = {
         }
     }
-
-
     inputChange = (e) => {
-        // debugger;
         this.props.store[e.target.name] = e.target.value;
-        // console.log("e target name", [e.target.name][0]);
         if ([e.target.name][0] === "sort") {
-            this.props.store.sortProducts(this.props.store.filteredAr)
+            this.props.store.sortProducts(this.props.store.filteredProducts)
         }
-        else this.props.store.filteredAr = this.props.store.filterProducts();
+        else {
+            this.props.store.filteredProducts = this.props.store.filterProducts();
+            this.props.store.currentPage = 1;
+        }
         this.props.store.getCurrentRecords();
     }
 
     renderOptions = () => {
         return (
-
             <div className="search-sort">
                 <div className="search-input">
-                 <i><FontAwesomeIcon style={{ color: "#555555" }} className="fas" icon={faSearch}/></i>
-                 <input type="text" name="searchText" id="searchText" onChange={this.inputChange} value={this.props.store.searchText} placeholder="search products"/>
+                    <i><FontAwesomeIcon style={{ color: "#555555" }} className="fas" icon={faSearch} /></i>
+                    <input type="text" name="searchText" id="searchText" onChange={this.inputChange} value={this.props.store.searchText} placeholder="search products" />
                 </div>
-                 <div>Sort by:  <select name="sort" value={this.props.store.sort} onChange={this.inputChange} >
-                        {this.sort.map((c, i) =>
-                            <option key={i} value={c}>{c}</option>
-                        )};
+                <div>Sort by:  <select name="sort" value={this.props.store.sort} onChange={this.inputChange} >
+                    {this.sort.map((c, i) =>
+                        <option key={i} value={c}>{c}</option>
+                    )};
                 </select></div>
             </div>
         )
     }
-
-
-
     render() {
         return (
             <div className="search-bar">

@@ -7,8 +7,7 @@
   width: 300px;
   height: 150px;
   margin: auto;
-  background: rgb(50, 92, 160);
-  opacity: 0.9;
+  background: rgb(29, 51, 87);
   border-radius: 5px;
   color: white;
   padding: 10px;
@@ -34,14 +33,14 @@
 .delete-form button {
   cursor: pointer;
   border: none;
-  background:rgb(61, 133, 228);
+  background:rgb(47, 101, 172);
   width: 80px;
   height: 35px;
   margin: 13px 20px;
   border-radius: 3px;
   opacity: 0.9;
   /* box-shadow: 2px 2px rgba(0, 0, 0, 0.3); */
-  color: #12122e ;
+  color: #5ec6f0 ;
   font-size: 16px;
 }
 .delete-form button:hover{

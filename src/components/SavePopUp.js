@@ -27,6 +27,5 @@ class SavePopUp extends Component {
         )
     }
 }
-
 export default SavePopUp;
 

@@ -1,4 +1,3 @@
-// import React, { Component } from 'react';
 import { observable, action, computed, reaction } from "mobx";
 import axios from 'axios';
 class ProductsStore {
@@ -7,7 +6,7 @@ class ProductsStore {
     @observable productIdForEdit = -1;
     @observable productIdForDelete = -1;
     @observable sort = 'name';
-    @observable filteredAr = [];
+    @observable filteredProducts = [];
     @observable searchText = '';
     @observable indexOfUpdatedProduct = -1;
     @observable currentPage = 1;
@@ -25,44 +24,33 @@ class ProductsStore {
     };
     @observable records =[];
     @action getData = () => {
-        console.log("here");
         axios.get('https://msbit-exam-products-store.firebaseio.com/products.json')
             .then(result => {
 
                 this.products = result.data;
-                console.log("this products", this.products);
-                this.filteredAr = [...this.products]
-                this.sortProducts(this.filteredAr)
+                this.filteredProducts = [...this.products]
+                this.sortProducts(this.filteredProducts)
                 this.isLoading = false;
             })
             .then(() => {
                 this.getCurrentRecords();
-            }
-
-            )
+            })
             .catch(function (error) {
                 console.log(error);
             })
     }
-
     @action sortProducts = () => {
         let sortParameter = this.sort;
-        console.log("sort Parameter", sortParameter);
-        let sortedArray = [...this.filteredAr]
-        this.filteredAr = sortedArray.sort((a, b) => {
+        let sortedArray = [...this.filteredProducts]
+        this.filteredProducts = sortedArray.sort((a, b) => {
             return (b[sortParameter] < a[sortParameter]) ? 1 : -1;
         });
     }
-
     @action getDetails = (id) => {
-        console.log("productIdForEdit" + id);
         let item = this.findCurrentItem(id)
-        console.log("item " + item.name);
-        return (item)
+        return item
     }
     @action filterProducts = () => {
-        // debugger;
-        console.log("searchText", this.searchText)
         return this.products.filter(p =>
             ((p["name"].toLowerCase().includes(this.searchText.toLowerCase()))
                 ||
@@ -86,15 +74,13 @@ class ProductsStore {
         let newProducts = [...this.products];
         newProducts = this.products.filter(p => p.id !== id);
         this.products = newProducts;
-        this.filteredAr = this.filterProducts();
+        this.filteredProducts = this.filterProducts();
         this.sortProducts();
         this.getCurrentRecords()
-        console.log("after delete", this.products);
-
     }
 
     @action findCurrentItem = (id) => {
-        return this.filteredAr.filter(p => p.id === id)[0];
+        return this.filteredProducts.filter(p => p.id === id)[0];
     }
 
     findIndexItem = (id) => {
@@ -109,14 +95,12 @@ class ProductsStore {
         this.form.url = arr.url;
     }
     @action getCurrentRecords = () => {
-        // debugger;
-        let records = [...this.filteredAr];
+        let records = [...this.filteredProducts];
         let startIndex = (this.currentPage - 1) * this.ITEMSPERPAGE + 1,
         endIndex = startIndex + this.ITEMSPERPAGE - 1,
         lastPage = Math.ceil(records.length / this.ITEMSPERPAGE);
         this.pagination = { startIndex, endIndex, lastPage }
         this.records = records.slice(startIndex - 1, endIndex);
-       
     }
 }
 const store = new ProductsStore();
