@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { observer, inject } from 'mobx-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import './css/searchBar.css';
+import { observer, inject } from 'mobx-react';
 @inject("store")
 @observer
 class SearchPanel extends Component {
@@ -21,7 +21,8 @@ class SearchPanel extends Component {
         if ([e.target.name][0] === "sort") {
             this.props.store.sortProducts(this.props.store.filteredAr)
         }
-        else this.props.store.filteredAr = this.props.store.filterProducts()
+        else this.props.store.filteredAr = this.props.store.filterProducts();
+        this.props.store.getCurrentRecords();
     }
 
     renderOptions = () => {

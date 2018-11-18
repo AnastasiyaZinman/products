@@ -9,7 +9,10 @@ class ProductsList extends Component {
      
 
     renderProductList = () => {
-        let records = this.props.store.filteredAr;
+        // let records = this.props.store.filteredAr;
+        let records = this.props.store.records;
+
+        // let records = this.props.store.getCurrentRecords();
        return records.map (p => 
         {
             return (<Product key={p.id} p={p}/>)

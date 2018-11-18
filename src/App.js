@@ -1,19 +1,14 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import ProductDetails from './components/ProductDetails';
-// import Navigation from './components/Navigation';
+import Navigation from './components/Navigation';
 import SearchPanel from './components/SearchSortPanel';
 import ProductsList from './components/ProductsList';
-// import ProductDetails from './components/ProductDetails';
 import './App.css';
 import { observer, inject } from 'mobx-react';
 @inject("store")
 @observer
 class App extends Component {
-  constructor() {
-    super();
 
-  }
   componentDidMount() {
     this.props.store.getData()
   }
@@ -28,7 +23,7 @@ class App extends Component {
           <div className="products-list">
             <SearchPanel />
             {(!this.props.store.isLoading) ? <ProductsList /> : <div>no data</div>}
-            {/* <Navigation /> */}
+            <Navigation />
           </div>
           <ProductDetails productId={this.props.store.productIdForEdit} filteredAr={this.props.store.filteredAr} />
         </div>

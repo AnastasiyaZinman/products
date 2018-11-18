@@ -1,7 +1,6 @@
 // import React, { Component } from 'react';
 import { observable, action, computed, reaction } from "mobx";
 import axios from 'axios';
-import { runInThisContext } from "vm";
 class ProductsStore {
     @observable products = [];
     @observable isLoading = true;
@@ -11,12 +10,20 @@ class ProductsStore {
     @observable filteredAr = [];
     @observable searchText = '';
     @observable indexOfUpdatedProduct = -1;
+    @observable currentPage = 1;
+    @observable ITEMSPERPAGE = 3;
+    @observable pagination = {
+        startIndex: 0,
+        endIndex: 0,
+        lastPage: 0
+    };
     @observable form = {
         name: '',
         description: '',
         price: 0,
         url: ''
-    }
+    };
+    @observable records =[];
     @action getData = () => {
         console.log("here");
         axios.get('https://msbit-exam-products-store.firebaseio.com/products.json')
@@ -28,6 +35,11 @@ class ProductsStore {
                 this.sortProducts(this.filteredAr)
                 this.isLoading = false;
             })
+            .then(() => {
+                this.getCurrentRecords();
+            }
+
+            )
             .catch(function (error) {
                 console.log(error);
             })
@@ -59,10 +71,10 @@ class ProductsStore {
     }
     @action saveDetails = () => {
         let index = this.findIndexItem(this.productIdForEdit)
-        if (index!==-1){
-        this.products[index].name = this.form.name;
-        this.products[index].description = this.form.description;
-        this.products[index].price = this.form.price;
+        if (index !== -1) {
+            this.products[index].name = this.form.name;
+            this.products[index].description = this.form.description;
+            this.products[index].price = this.form.price;
         }
         return index
     }
@@ -76,6 +88,7 @@ class ProductsStore {
         this.products = newProducts;
         this.filteredAr = this.filterProducts();
         this.sortProducts();
+        this.getCurrentRecords()
         console.log("after delete", this.products);
 
     }
@@ -94,6 +107,16 @@ class ProductsStore {
         this.form.description = arr.description;
         this.form.price = arr.price;
         this.form.url = arr.url;
+    }
+    @action getCurrentRecords = () => {
+        // debugger;
+        let records = [...this.filteredAr];
+        let startIndex = (this.currentPage - 1) * this.ITEMSPERPAGE + 1,
+        endIndex = startIndex + this.ITEMSPERPAGE - 1,
+        lastPage = Math.ceil(records.length / this.ITEMSPERPAGE);
+        this.pagination = { startIndex, endIndex, lastPage }
+        this.records = records.slice(startIndex - 1, endIndex);
+       
     }
 }
 const store = new ProductsStore();
