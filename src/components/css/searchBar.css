@@ -1,0 +1,32 @@
+.search-bar {
+    width: 100%;
+    color:black;
+   vertical-align: middle;
+   display: flex;
+   align-items: center;
+}
+.search-sort    {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; 
+    align-content: center;
+    padding: 4px 25px;
+}
+
+select  {
+    height:20px;
+    width: 100px;
+}
+.search-bar input[type=text]  {
+    height: 20px;
+    border-radius: 10px;
+    padding-left: 30px;
+}
+.search-input input[type=text] {
+    position: relative;
+}
+.search-input i{
+    position: absolute;
+   margin: 2px 5px;
+    z-index: 1;
+}

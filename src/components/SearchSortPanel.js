@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { observer, inject } from 'mobx-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import './css/searchBar.css';
 @inject("store")
 @observer
 class SearchPanel extends Component {
@@ -23,18 +26,17 @@ class SearchPanel extends Component {
 
     renderOptions = () => {
         return (
-            <div>
-                <div className="search">
-                    <span>
-                        <input type="text" name="searchText" id="searchText" onChange={this.inputChange} value={this.props.store.searchText} placeholder="Search.." />
-                    </span>
+
+            <div className="search-sort">
+                <div className="search-input">
+                 <i><FontAwesomeIcon style={{ color: "#555555" }} className="fas" icon={faSearch}/></i>
+                 <input type="text" name="searchText" id="searchText" onChange={this.inputChange} value={this.props.store.searchText} placeholder="search products"/>
                 </div>
-                <div className="sort">
-                    <select name="sort" value={this.props.store.sort} onChange={this.inputChange} >
+                 <div>Sort by:  <select name="sort" value={this.props.store.sort} onChange={this.inputChange} >
                         {this.sort.map((c, i) =>
                             <option key={i} value={c}>{c}</option>
                         )};
-          </select></div>
+                </select></div>
             </div>
         )
     }
