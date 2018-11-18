@@ -21,7 +21,7 @@
 }
 
 .search-bar {
-  background-color: #94d0f3;
+  background-color:white;
   height: 40px;
 }
 
@@ -29,13 +29,13 @@
 /* width: 100%; */
 display: flex;
 margin: 0 20px 0 20px; 
-background-color: rgb(201, 228, 247);
+background-color:white;
 }
 
 .products-list  {
-box-sizing: content-box;
+box-sizing: border-box;
 flex: 60%;
-height: 550px;
+height: 650px;
 overflow: scroll;
 /* padding: 10px 5px; */
 }

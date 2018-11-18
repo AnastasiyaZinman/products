@@ -17,8 +17,8 @@ class ProductsList extends Component {
     render() {
         let p = this.props.p;
         return (
-            <div className="product-item" key={p.id} id={p.id}
-                //  style={{ backgroundColor: this.state.color }}
+            <div  key={p.id} id={p.id}
+                className={this.props.store.productIdForEdit===p.id? "product-item clicked": "product-item" }
                 onClick={() => this.edit(p.id)}
             >
                 <div className="img-thumbnail">

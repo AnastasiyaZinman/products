@@ -11,6 +11,7 @@
     justify-content: space-between; 
     align-content: center;
     padding: 4px 25px;
+    margin-top: 10px;
 }
 
 select  {
