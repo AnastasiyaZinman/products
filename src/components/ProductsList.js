@@ -25,8 +25,9 @@ class ProductsList extends Component {
              {(this.props.store.productIdForDelete!==-1) ? 
              <DeleteForm /> 
              : null}
+             <div className = "products-list-container">
              { this.renderProductList()}
-                {/* <img className="main-img" src={mainImg} alt="crm"/> */}
+            </div>
             </div>
         )
     }

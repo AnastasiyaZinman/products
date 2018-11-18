@@ -22,7 +22,7 @@ class App extends Component {
         <div className="content-box">
           <div className="products-list">
             <SearchPanel />
-            {(!this.props.store.isLoading) ? <ProductsList /> : <div>no data</div>}
+            {(!this.props.store.isLoading) ? <ProductsList /> : <div>no data to display</div>}
             <Navigation />
           </div>
           <ProductDetails productId={this.props.store.productIdForEdit} filteredAr={this.props.store.filteredAr} />

@@ -10,7 +10,12 @@
     text-align: left;
     padding: 10px 10px;
     border: 1px solid grey;
-    box-shadow: 2px 5px 7px #3558668a;
+    box-shadow: 2px 5px 7px #547d8d;
+}
+
+.products-list-container{
+ height:550px;
+    
 }
 .clicked{
     background-color: #94d0f3;

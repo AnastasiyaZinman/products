@@ -11,7 +11,7 @@ class ProductsStore {
     @observable searchText = '';
     @observable indexOfUpdatedProduct = -1;
     @observable currentPage = 1;
-    @observable ITEMSPERPAGE = 3;
+    @observable ITEMSPERPAGE = 4;
     @observable pagination = {
         startIndex: 0,
         endIndex: 0,
