@@ -1,5 +1,4 @@
-.item {
-    
+.item   {
     min-width: 700px;
     box-sizing: border-box;
     text-align: left;
@@ -7,26 +6,27 @@
     border: 1px solid black;
     padding: 10px 20px;
 }
-.main-img{
+.main-img   {
     padding: 10px;
     width: 200px;
 }
 .details input {
     width: 100%;
+    margin-bottom: 10px;
 }
 
-.details input {
-margin-bottom: 10px;
+.details textarea {
+    width: 100%;
+}
+.error-notice   {
+    color:red;
 }
 
 .btn-save   {
     background-color: green;
 }
-.save-bottom{
+.save-bottom    {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
-}
-#updDescr {
-   
+    justify-content: space-between;
 }
