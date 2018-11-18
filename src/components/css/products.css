@@ -4,7 +4,7 @@
     height: 110px;
     margin: 15px auto;
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 8fr;
     grid-template-areas: "i t";
     text-align: left;
     padding: 10px 10px;
@@ -21,7 +21,7 @@
 }
 .product-descr  {
     position: relative;
-    margin: 5px 5px;
+    margin: 5px 15px;
     grid-area: t;
     overflow: hidden;
 }

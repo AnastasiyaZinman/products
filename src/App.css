@@ -41,10 +41,10 @@ overflow: scroll;
 /* padding: 10px 5px; */
 }
 
-
 .products-details {
   flex:40%;
   margin-top:30px;
+  padding: 0 20px;
 }
 .foot-pages{
   align-items: flex-end;
@@ -74,6 +74,6 @@ overflow: scroll;
   }
 }
 
-.item{
+/* .item{
   width:400px;
-}
+} */

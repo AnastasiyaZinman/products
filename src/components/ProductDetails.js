@@ -38,17 +38,18 @@ class ProductDetails extends Component {
     renderDetails = () => {
         if (this.props.store.productIdForEdit !== -1) {
             // console.log("current item", productDetails);
-            return (<div className="item details">
+            return (
+                <div className="item details">
                 <img className="main-img" src={this.props.store.form.url} alt="crm" />
                 <div>Name: <br />
                     <input id="updName" name='name' type='text'
                         value={this.props.store.form.name} onChange={this.changeInput}></input>
                 </div>
                 <div>Description: <br />
-                    <textarea rows="4" id="updDescr" name='description' value={this.props.store.form.description} onChange={this.changeInput}></textarea>
+                    <textarea  id="updDescr" name='description' value={this.props.store.form.description} onChange={this.changeInput}></textarea>
                 </div>
                 <div>Price: <br />
-                    <input id="updPrice" name='price' type='text' value={this.props.store.form.price} onChange={this.changeInput}></input>
+                    <input id="updPrice" name='price' type='text' value={this.props.store.form.price} onChange={this.changeInput}></input> $
                 </div>
                 <div className="save-bottom">
                     {(this.showMessage) ?

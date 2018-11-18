@@ -21,7 +21,9 @@ class ProductsList extends Component {
                 //  style={{ backgroundColor: this.state.color }}
                 onClick={() => this.edit(p.id)}
             >
-                <div className="img-thumbnail"><img className="img-100" src={p.thumbnailUrl} alt={p.thumbnailUrl} /></div>
+                <div className="img-thumbnail">
+                    <img className="img-100" src={p.thumbnailUrl} alt={p.thumbnailUrl} />
+                </div>
                 <div className="product-descr">
                     <div>{p.name}</div>
                     <div>{p.description}</div>
