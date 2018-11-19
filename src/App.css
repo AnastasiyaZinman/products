@@ -92,6 +92,6 @@ cursor: pointer;
 
 @media only screen and (max-width: 900px) {
   .content-box {
-    display: block;
+    flex-direction: column;
   }
 } 
